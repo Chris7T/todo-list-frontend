@@ -1,0 +1,23 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white black-background">
+                    Google Authentication
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <i class="bi bi-google" style="font-size: 2rem; color: #343a40;"></i>
+                    </div>
+                    <h5 class="card-title text-center mt-3">Connection Status</h5>
+                    <p class="card-text text-center">{{message}}</p>
+                    
+                    <div class="text-center mt-4" *ngIf="googleAuthSuccess">
+                        <button class="btn btn-dark" style="margin-right: 20px;" (click)="importFromGoogleAPI()">Import Tasks</button>
+                        <button class="btn btn-dark" (click)="exportFromGoogleAPI()">Export Tasks</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
