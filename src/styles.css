@@ -18,6 +18,23 @@
     color: #ffffff;
 }
 
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.text-right.btn-container button {
+    margin-left: 5px;
+}
+
 @media (max-width: 576px) {
     .responsive-font {
         font-size: 0.8rem;
