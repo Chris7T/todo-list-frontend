@@ -1,0 +1,75 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body responsive-font">
+                    <h1 class="card-title text-center">Tasks</h1>
+                    <div class="mb-3">
+                        <button class="btn btn-dark btn-block" (click)="addTask()">Add Task</button>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">ID</th>
+                                <th style="width: 20%;">Title</th>
+                                <th style="width: 19%;">DateTime</th>
+                                <th style="width: 5%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let task of tasks">
+                                <td>{{ task.id }}</td>
+                                <td>{{ task.title }}</td>
+                                <td>{{ task.date_time | date:'short' }}</td>
+                                <td class="text-right btn-container">
+                                    <button class="btn btn-dark btn-sm mr-2" (click)="editTask(task)">View</button>
+                                    <button class="btn btn-dark btn-sm" (click)="deleteTask(task.id)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination-container" *ngIf="paginationLinks && paginationMeta">
+                        <button class="btn btn-dark btn-sm" [disabled]="!paginationLinks.prev"
+                            (click)="goToPrevPage()">Previous</button>
+                        <span> Page {{ paginationMeta.current_page }}</span>
+                        <button class="btn btn-dark btn-sm" [disabled]="!paginationLinks.next"
+                            (click)="goToNextPage()">Next</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #template>
+        <div class="modal-header">
+            <h5 class="modal-title">{{ newTask.editing ? 'Edit Task' : 'Add New Task' }}</h5>
+        </div>
+        <div class="modal-body">
+            <input type="text" class="form-control" [(ngModel)]="newTask.title" placeholder="Enter task title">
+            <div *ngIf="validationErrors.title" class="invalid-feedback d-block">
+                {{ validationErrors.title[0] }}
+            </div>
+            <input type="text" class="form-control mt-2" [(ngModel)]="newTask.description"
+                placeholder="Enter task description">
+            <div *ngIf="validationErrors.description" class="invalid-feedback d-block">
+                {{ validationErrors.description[0] }}
+            </div>
+            <input type="datetime-local" class="form-control mt-2" [(ngModel)]="newTask.date_time">
+            <div *ngIf="validationErrors.date_time" class="invalid-feedback d-block">
+                {{ validationErrors.date_time[0] }}
+            </div>
+            <div class="form-check form-switch mt-2" *ngIf="newTask.editing">
+                <input class="form-check-input" type="checkbox" id="completedSwitch" [(ngModel)]="newTask.completed">
+                <label class="form-check-label" for="completedSwitch">Task Completed</label>
+            </div>
+            <div *ngIf="generalError" class="text-center text-danger mt-2">
+                {{ generalError }}
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="declineAdd()">Cancel</button>
+            <button type="button" class="btn btn-dark" (click)="confirm()">{{ newTask.editing ? 'Save' : 'Add'}}</button>
+        </div>
+    </ng-template>
+</div>
