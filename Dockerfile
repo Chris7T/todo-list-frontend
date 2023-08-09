@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-RUN npm install && npm install typescript --save-dev && npm install -g @angular/cli@10.1.7 && npm install --save-dev @angular-devkit/build-angular
+RUN npm install && npm install -g @angular/cli@10.1.7 && npm install --save-dev @angular-devkit/build-angular
 
 EXPOSE 4200
 

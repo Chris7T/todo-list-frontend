@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body responsive-font">
+          <h1 class="card-title text-center">Register</h1>
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                </div>
+                <input [class.is-invalid]="validationErrors.name" type="text" id="name" [(ngModel)]="user.name"
+                  name="name" class="form-control" placeholder="Name" required>
+                <div *ngIf="validationErrors.name" class="invalid-feedback d-block">
+                  {{ validationErrors.name[0] }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon-email"><i class="fas fa-envelope"></i></span>
+                </div>
+                <input [class.is-invalid]="validationErrors.email" type="email" id="email" [(ngModel)]="user.email"
+                  name="email" class="form-control" placeholder="Email" required>
+                <div *ngIf="validationErrors.email" class="invalid-feedback d-block">
+                  {{ validationErrors.email[0] }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon2"><i class="fas fa-lock"></i></span>
+                </div>
+                <input [class.is-invalid]="validationErrors.password || passwordMismatch" type="password" id="password"
+                  [(ngModel)]="user.password" name="password" class="form-control" placeholder="Password" required>
+                <div *ngIf="validationErrors.password" class="invalid-feedback d-block">
+                  {{ validationErrors.password[0] }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon3"><i class="fas fa-lock"></i></span>
+                </div>
+                <input [class.is-invalid]="validationErrors.password_confirmation || passwordMismatch" type="password"
+                  id="password_confirmation" [(ngModel)]="user.password_confirmation" name="password_confirmation"
+                  class="form-control" placeholder="Confirm Password" required>
+                <div *ngIf="passwordMismatch" class="invalid-feedback d-block">
+                  Passwords do not match.
+                </div>
+                <div *ngIf="validationErrors.password_confirmation && !passwordMismatch"
+                  class="invalid-feedback d-block">
+                  {{ validationErrors.password_confirmation[0] }}
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="generalError" class="text-center text-danger mb-3">
+              {{ generalError }}
+            </div>
+
+            <div class="row justify-content-between">
+              <div class="col-auto">
+                <button type="button" class="btn btn-outline-dark btn-block" (click)="goToLogin()">Login</button>
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-dark btn-block">Register</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
