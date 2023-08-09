@@ -1,0 +1,15 @@
+@media (max-width: 1200px) {
+    
+    .btn-container {
+        height: 65px;
+        
+    }
+}
+
+@media (max-width: 424px) {
+
+    .btn-container {
+        height: 55.3px;
+    }
+    
+}

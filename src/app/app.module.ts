@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListComponent } from './components/list/list.component';
+import { TaskComponent } from './components/task/task.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ListComponent } from './components/list/list.component';
     RegisterComponent,
     LoginComponent,
     ListComponent,
+    TaskComponent,
   ],
   imports: [
     BrowserModule,
